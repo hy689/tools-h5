@@ -19,12 +19,6 @@ const MapDialog = (props: any, ref: any) => {
   const [activeId, setActiveId] = useState<string>('')
   const [addresses, setAddresses] = useState<IAddress[]>([])
 
-  useImperativeHandle(ref, () => ({
-    open,
-    close
-  }))
-
-
   const open = () => {
     setVisible(true)
   }
@@ -84,6 +78,11 @@ const MapDialog = (props: any, ref: any) => {
 
     close()
   }
+
+  useImperativeHandle(ref, () => ({
+    open,
+    close
+  }))
 
   return (
     <>

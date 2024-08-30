@@ -152,17 +152,16 @@ export default function Attend() {
           })}
         </>
       }
-      <ChangeAddress ref={changeAddressRef} addressId={address.id} setAddress={setAddress} />
-      {attend.currentSignVo &&
+      {
         <>
           <h1>今日未打卡</h1>
-          <Card className='attend-card' title={attend.currentSignVo.signTypeEnum === 'TO_WORK' ? '上班打卡' : '下班打卡'}>
+          <Card className='attend-card' title={attend.currentSignVo &&attend.currentSignVo.signTypeEnum === 'TO_WORK' ? '上班打卡' : '下班打卡'}>
             <div>
               当前打卡位置：{address.address}
             </div>
             <div >
               <Button style={{ marginRight: '20px' }} color='primary' onClick={changeAddressRef.current?.open}>修改打卡位置</Button>
-              <Button color='primary' onClick={mapDialogRef.current?.open}>地图自己选</Button>
+              <Button color='primary' onClick={ ()=>{console.log('打开弹出',mapDialogRef.current); mapDialogRef.current?.open()}}>地图自己选</Button>
 
             </div>
             {
@@ -171,9 +170,10 @@ export default function Attend() {
               </div>
             }
           </Card>
-          <MapDialog ref={mapDialogRef} setAddress={customizeAddress} />
         </>
       }
+      <ChangeAddress ref={changeAddressRef} addressId={address.id} setAddress={setAddress} />
+      <MapDialog ref={mapDialogRef} setAddress={customizeAddress} />
     </div>
   )
 }
