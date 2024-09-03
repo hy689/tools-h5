@@ -161,7 +161,7 @@ export default function Attend() {
             </div>
             <div >
               <Button style={{ marginRight: '20px' }} color='primary' onClick={changeAddressRef.current?.open}>修改打卡位置</Button>
-              <Button color='primary' onClick={ ()=>{console.log('打开弹出',mapDialogRef.current); mapDialogRef.current?.open()}}>地图自己选</Button>
+              {/* <Button color='primary' onClick={ ()=>{console.log('打开弹出',mapDialogRef.current); mapDialogRef.current?.open()}}>地图自己选</Button> */}
 
             </div>
             {
