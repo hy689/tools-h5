@@ -3,9 +3,12 @@ import { apiPlatformProfile, apiRenewToken } from "../../../api"
 import { Button, CheckList, Toast } from "antd-mobile"
 import { useNavigate } from "react-router-dom"
 import store from "../../../utils/store";
+import { useStoreDispatch } from "../../../store/context";
+import { SET_TOKEN, SET_USER } from "../../../store/context/types";
 
 export default function ChangeMerchant() {
     const navigate = useNavigate();
+    const dispatch = useStoreDispatch()
     const [merchants, setMerchants] = useState<{ id: number, name: string }[]>([])
     let merchantId: string
 
@@ -34,6 +37,19 @@ export default function ChangeMerchant() {
             icon: 'success',
             content: '登录成功'
         })
+
+        const r = await apiPlatformProfile({})
+        if (!r.success) {
+            Toast.show({
+                icon: 'fail',
+                content: r.message
+            })
+            return
+        }
+
+        
+        dispatch({type:SET_USER, payload: r.data})
+        dispatch({type:SET_TOKEN, payload: res.data.token})
 
         navigate('/attend')
     }

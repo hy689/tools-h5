@@ -1,6 +1,6 @@
 import { Button, Card, Toast } from 'antd-mobile'
 import { useEffect, useRef, useState } from 'react'
-import { apiDoSign, apiPlatformProfile, apiQueryAttendanceGroup, IDoSignReq, IPlatformProfileRes, IQueryAttendanceGroupRes, ITodaySignList } from '../../../api'
+import { apiDoSign, apiQueryAttendanceGroup, IDoSignReq, IQueryAttendanceGroupRes, ITodaySignList } from '../../../api'
 import dayjs from 'dayjs'
 import './index.css'
 import { IAddress } from '../../../constants/attend.ts'
@@ -8,18 +8,13 @@ import ChangeAddress from './components/ChangeAddress'
 import generateRandomCoordinates from '../../../utils/generate-random-coordinates'
 import MapDialog from './components/CustomizeAddressDialog/index.tsx'
 import { storeAddresses } from '../../../utils/store-addresses.ts'
+import { useStore } from '../../../store/context/index.tsx'
 
 export default function Attend() {
   const changeAddressRef = useRef<any>(null);
   const mapDialogRef = useRef<any>(null);
 
-
-  const [profile, setProfile] = useState<IPlatformProfileRes>({
-    joinedMerchant: [{ merchant: { id: 0, name: '' } }],
-    user: { realName: '' },
-    merchant: { name: '', id: 0 }
-  })
-
+  const {profile} = useStore()
   const [attend, setAttend] = useState<IQueryAttendanceGroupRes>({
     attendGroup: {
       attendId: 0,
@@ -107,11 +102,9 @@ export default function Attend() {
   }
 
   const queryAttendanceGroup = async () => {
-    const r = await apiPlatformProfile({})
-    setProfile(r.data)
 
     const r2 = await apiQueryAttendanceGroup({
-      coId: r.data.merchant.id,
+      coId: profile.merchant.id,
     })
     if (!r2.success) {
       Toast.show({
