@@ -145,7 +145,7 @@ export default function Attend() {
           })}
         </>
       }
-      {
+      {attend.currentSignVo &&
         <>
           <h1>今日未打卡</h1>
           <Card className='attend-card' title={attend.currentSignVo &&attend.currentSignVo.signTypeEnum === 'TO_WORK' ? '上班打卡' : '下班打卡'}>
