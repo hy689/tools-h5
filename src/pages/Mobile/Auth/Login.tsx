@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input, Toast } from 'antd-mobile'
 import { apiLogin } from '../../../api'
 import store from '../../../utils/store'
 import { loginValueKey } from '../../../constants'
+import React from 'react'
 
 interface LoginProps {
     setStep: (step: number) => void

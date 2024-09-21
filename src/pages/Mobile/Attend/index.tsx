@@ -9,6 +9,7 @@ import generateRandomCoordinates from '../../../utils/generate-random-coordinate
 import MapDialog from './components/CustomizeAddressDialog/index.tsx'
 import { storeAddresses } from '../../../utils/store-addresses.ts'
 import { useStore } from '../../../store/context/index.tsx'
+import React from 'react'
 
 export default function Attend() {
   const changeAddressRef = useRef<any>(null);

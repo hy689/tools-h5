@@ -2,6 +2,7 @@ import { createContext, useReducer, useContext, useEffect } from "react";
 import { contextStoreKey } from "../../constants";
 import { IPlatformProfileRes } from "../../api";
 import { RESTORE_STATE, SET_TOKEN, SET_USER } from "./types";
+import React from 'react'
 
 interface State {
     profile: IPlatformProfileRes;

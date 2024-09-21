@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import React from 'react'
+
 import Login from './Login'
 import ChangeMerchant from './ChangeMerchant'
 export default function Auth() {

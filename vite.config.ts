@@ -2,6 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 // @ts-ignore
 import pxtovw from 'postcss-px-to-viewport'
+import qiankun from 'vite-plugin-qiankun';
+
+import reactRefresh from '@vitejs/plugin-react'
+// useDevMode 开启时与热更新插件冲突
+const useDevMode = true
 
 // 尝试使用 `npm i --save-dev @types/postcss-px-to-viewport` 
 // (如果存在)，或者添加一个包含 `declare module 'postcss-px-to-viewport';` 的新声明(.d.ts)文件ts(7016)
@@ -13,7 +18,18 @@ const usePxtovw = pxtovw({
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    // react(),
+    qiankun('reactApp', {
+      useDevMode: true
+    }),
+    ...(
+      useDevMode ? [] : [
+        reactRefresh()
+      ]
+    ),
+  ],
+  base: '/reactApp',
   css: {
     postcss: {
       plugins: [usePxtovw]
