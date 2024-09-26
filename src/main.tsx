@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom';
 import { renderWithQiankun, qiankunWindow, QiankunProps } from 'vite-plugin-qiankun/dist/helper';
-import React from 'react'
 
 import router from './routes'
 import './main.css'
@@ -23,7 +22,8 @@ function render(props: any) {
 
 renderWithQiankun({
   mount(props) {
-    console.log('mount');
+    console.log('mount',props);
+    window.$router = props.mainRouter
     render(props);
   },
   bootstrap() {
