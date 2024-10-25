@@ -7,6 +7,9 @@ export default function Auth() {
         <>
             {step === 1 && <Login setStep={setStep}/>}
             {step === 2 && <ChangeMerchant />}
+            <div>
+                <a href="https://beian.miit.gov.cn/">京ICP备2024085738号-1</a>
+            </div>
         </>
     )
 }
