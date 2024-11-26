@@ -7,9 +7,7 @@ import './main.css'
 import StoreProvider from './store/context';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
     <StoreProvider>
       <RouterProvider router={router} />
     </StoreProvider>
-  </StrictMode>,
 )

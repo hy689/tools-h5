@@ -19,6 +19,9 @@ export default defineConfig({
       plugins: [usePxtovw]
     }
   },
+  server: {
+    host:'192.168.0.4'
+  },
   resolve: {
     alias: {
       "@": '/src'
