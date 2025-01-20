@@ -1,0 +1,1 @@
+System.register([],(function(r,t){"use strict";return{execute:function(){r("r",(function(r,e=!1){return new t(null)}));class t{constructor(r){this.worker=null,this.worker=r}defaults(r){return this.worker||r()}}}}}));

@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import canvasDatagrid from "canvas-datagrid";
 import * as xlsx from "xlsx";
 
-const ExcelView = () => {
+const ExcelView = (fileInfo) => {
   const [sheets, setSheets] = useState([])
+  const [grid, setGrid] = useState(null)
+  const [workbook, setWorkbook] = useState(null)
 
   useEffect(() => {
-    fetch('/xls.xlsx').then(response => {
+    fetch('/阿拉钉系统说明清单.xlsx').then(response => {
       return response.arrayBuffer()
     }).then(res => {
       const workbook = xlsx.read(res);
@@ -23,18 +25,20 @@ const ExcelView = () => {
       grid.style.width = "100%"; // 宽度为视口宽度
       grid.style.height = "calc(100vh - 40px)";
 
+      setGrid(grid)
+      setWorkbook(workbook)
       setSheets(workbook.SheetNames)
       console.log('sdjflkasjdflkjdaslkfjasdlkfjksld')
     })
   }, [])
 
 
-  const pageTurning = (e) => {
-    //         const sheetIndex = 1;
-    // const sheet = workbook.Sheets[wb.SheetNames[sheetIndex]]; // 这里取第 1 个 sheet
-    // const json = xlsx.utils.sheet_to_json(sheet);
-    // grid.data = json
+  const pageTurning = (name) => {
+    const sheet = workbook.Sheets[name]; // 这里取第 1 个 sheet
+    const json = xlsx.utils.sheet_to_json(sheet);
+    grid.data = json
   }
+
   return (
     <div>
       <div id='excel'>
