@@ -1,6 +1,6 @@
 import ErrorPage from './error-page'
-import Attend from '../pages/Mobile/Attend';
-import Auth from '../pages/Mobile/Auth';
+import Attend from '../pages/Attend';
+import Auth from '../pages/Auth';
 
 import { createBrowserRouter } from "react-router-dom";
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Checkbox, Form, Input, Toast } from 'antd-mobile'
-import { apiLogin } from '../../../api'
-import store from '../../../utils/store'
-import { loginValueKey } from '../../../constants'
+import { apiLogin } from '../../api'
+import store from '../../utils/store'
+import { loginValueKey } from '../../constants'
 
 interface LoginProps {
     setStep: (step: number) => void

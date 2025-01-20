@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { apiPlatformProfile, apiRenewToken } from "../../../api"
+import { apiPlatformProfile, apiRenewToken } from "../../api"
 import { Button, CheckList, Toast } from "antd-mobile"
 import { useNavigate } from "react-router-dom"
-import store from "../../../utils/store";
-import { useStoreDispatch } from "../../../store/context";
-import { SET_TOKEN, SET_USER } from "../../../store/context/types";
+import store from "../../utils/store";
+import { useStoreDispatch } from "../../store/context";
+import { SET_TOKEN, SET_USER } from "../../store/context/types";
 
 export default function ChangeMerchant() {
     const navigate = useNavigate();

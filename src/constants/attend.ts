@@ -8,10 +8,17 @@ export interface IAddress {
 export const addresses:IAddress[] = [
     {
         outside: false,
-        address: '北京市北京市朝阳区运河北路高碑店乡',
-        latitude: 39.9035949,
-        longitude: 116.5083003,
-        id:`北京市北京市朝阳区运河北路高碑店乡/39.9035949/116.5083003`
+        address: '山东省济南市槐荫区兴福街道齐州路2999号绿地中央广场商业一区B栋207',
+        latitude: 36.664856,
+        longitude: 116.895983,
+        id:`山东省济南市槐荫区兴福街道齐州路2999号绿地中央广场商业一区B栋207/36.664856/116.895983`
+    },
+    {
+        outside: false,
+        address: '北京市东城区后永康胡同东雍创业谷',
+        latitude: 39.945207,
+        longitude: 116.423544,
+        id:`北京市东城区后永康胡同东雍创业谷/39.945207/116.423552`
     },
     {
         outside: true,

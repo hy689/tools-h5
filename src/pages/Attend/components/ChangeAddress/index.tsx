@@ -1,6 +1,6 @@
 import { Picker } from "antd-mobile"
 import { forwardRef, useImperativeHandle, useState } from "react"
-import { getAddresses } from "../../../../../utils/store-addresses"
+import { getAddresses } from "../../../../utils/store-addresses"
 
 const changeAddress = (props: any, ref: any) => {
     const [visible, setVisible] = useState(false)

@@ -1,18 +1,15 @@
 import { Button, Card, Toast } from 'antd-mobile'
 import { useEffect, useRef, useState } from 'react'
-import { apiDoSign, apiQueryAttendanceGroup, IDoSignReq, IQueryAttendanceGroupRes, ITodaySignList } from '../../../api'
+import { apiDoSign, apiQueryAttendanceGroup, IDoSignReq, IQueryAttendanceGroupRes, ITodaySignList } from '../../api/index.ts'
 import dayjs from 'dayjs'
 import './index.css'
-import { IAddress } from '../../../constants/attend.ts'
-import ChangeAddress from './components/ChangeAddress'
-import generateRandomCoordinates from '../../../utils/generate-random-coordinates'
-import MapDialog from './components/CustomizeAddressDialog/index.tsx'
-import { storeAddresses } from '../../../utils/store-addresses.ts'
-import { useStore } from '../../../store/context/index.tsx'
+import { IAddress } from '../../constants/attend.ts'
+import ChangeAddress from './components/ChangeAddress/index.tsx'
+import generateRandomCoordinates from '../../utils/generate-random-coordinates.ts'
+import { useStore } from '../../store/context/index.tsx'
 
 export default function Attend() {
   const changeAddressRef = useRef<any>(null);
-  const mapDialogRef = useRef<any>(null);
 
   const {profile} = useStore()
   const [attend, setAttend] = useState<IQueryAttendanceGroupRes>({
@@ -28,17 +25,6 @@ export default function Attend() {
     longitude: 116.171196,
     id: '中关村环保科技示范园（夏雪路）中国人寿科技园B座北/40.062539/116.171196'
   })
-
-  const customizeAddress = (value: { address: string, latitude: number, longitude: number }) => {
-    const newAddress = {
-      ...address,
-      ...value,
-      id: `${value.address}/${value.latitude}/${value.longitude}`
-    }
-    setAddress(newAddress)
-
-    storeAddresses(newAddress)
-  }
 
   const updateCheckInTime = async (checkIn: ITodaySignList) => {
     console.log(checkIn, 'adsjflasdjflksajdflkjsdf')
@@ -56,7 +42,7 @@ export default function Attend() {
       coId: checkIn.coId,
     }
 
-    doCheckIn(body)
+    _doSign(body)
   }
 
   const doSign = async () => {
@@ -74,10 +60,10 @@ export default function Attend() {
       attendId: attend.attendGroup.attendId,
       coId: profile.merchant.id,
     }
-    doCheckIn(body)
+    _doSign(body)
   }
 
-  const doCheckIn = async (body: IDoSignReq) => {
+  const _doSign = async (body: IDoSignReq) => {
     const { latitude, longitude } = generateRandomCoordinates(body.latitude, body.longitude)
     const r = await apiDoSign({
       ...body,
@@ -154,7 +140,6 @@ export default function Attend() {
             </div>
             <div >
               <Button style={{ marginRight: '20px' }} color='primary' onClick={changeAddressRef.current?.open}>修改打卡位置</Button>
-              {/* <Button color='primary' onClick={ ()=>{console.log('打开弹出',mapDialogRef.current); mapDialogRef.current?.open()}}>地图自己选</Button> */}
 
             </div>
             {
@@ -166,7 +151,6 @@ export default function Attend() {
         </>
       }
       <ChangeAddress ref={changeAddressRef} addressId={address.id} setAddress={setAddress} />
-      <MapDialog ref={mapDialogRef} setAddress={customizeAddress} />
     </div>
   )
 }
